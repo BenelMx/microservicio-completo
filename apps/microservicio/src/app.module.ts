@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './user.entity'; // Importa la entidad User
+import { Product } from './product.entity';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { User } from './user.entity'; // Importa la entidad User
       username: 'root',
       password: '54321',
       database: 'Taller_4',
-      entities: [User],
+      entities: [User, Product],
       synchronize: true,
     }),
     // Configura ClientsModule y registra BM_SERVICE
@@ -30,7 +31,7 @@ import { User } from './user.entity'; // Importa la entidad User
         },
       },
     ]),
-    TypeOrmModule.forFeature([User]), // Importa tu entidad User
+    TypeOrmModule.forFeature([User, Product]), // Importa tu entidad User
   ],
   controllers: [AppController],
   providers: [AppService],
