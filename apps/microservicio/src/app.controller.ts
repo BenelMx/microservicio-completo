@@ -6,6 +6,9 @@ import { Product } from './product.entity';
 
 @Controller()
 export class AppController {
+  getHello(): any {
+    throw new Error('Method not implemented.');
+  }
   constructor(private readonly _appService: AppService) {}
 
   // Endpoint para crear un nuevo usuario (examen)
@@ -35,7 +38,7 @@ export class AppController {
 
   // Endpoint para crear un nuevo producto
   @Post('products')
-  public async newProduct(@Body() body: { name: string, price: number, description: string }) {
+  public async newProduct(@Body() body: { name: string, price: number, amount: number }) {
     return this._appService.newProduct(body);
   }
 

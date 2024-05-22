@@ -27,7 +27,7 @@ export class AppService {
   }
 
   // Método para crear un nuevo producto
-  async newProduct(body: { name: string, price: number, description: string }) {
+  async newProduct(body: { name: string, price: number, amount: number }) {
     const newProduct = this.productRepository.create(body);
     return await this.productRepository.save(newProduct);
   }

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('showProductsBtn').addEventListener('click', async function () {
         try {
-            const response = await fetch('http://localhost:3001/productos');
+            const response = await fetch('http://localhost:3001/productos'); // Asegúrate de que la URL sea correcta
             if (!response.ok) {
                 throw new Error('Error al obtener la lista de productos');
             }
@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${product.id}</td>
-                    <td>${product.nombre}</td>
-                    <td>${product.precio}</td>
-                    <td>${product.cantidad}</td>
+                    <td>${product.name}</td>
+                    <td>${product.price}</td>
+                    <td>${product.quantity}</td>
                 `;
                 productTableBody.appendChild(row);
             });
@@ -35,4 +35,46 @@ document.addEventListener('DOMContentLoaded', function () {
             productTableBody.innerHTML = '<tr><td colspan="4">No se pudieron cargar los productos</td></tr>';
         }
     });
+
+    document.getElementById('addProductBtn').addEventListener('click', function () {
+        const form = document.getElementById('addProductForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.getElementById('productForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const productName = document.getElementById('productName').value;
+        const productPrice = parseFloat(document.getElementById('productPrice').value);
+        const productQuantity = parseInt(document.getElementById('productQuantity').value);
+
+        try {
+            const response = await fetch('http://localhost:3001/products', { // Asegúrate de que la URL sea correcta
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: productName, price: productPrice, amount: productQuantity })
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al agregar el producto');
+            }
+
+            const data = await response.json();
+            console.log(data);
+
+            // Refresca la lista de productos
+            document.getElementById('showProductsBtn').click();
+
+            // Resetea el formulario
+            document.getElementById('productForm').reset();
+
+            // Oculta el formulario
+            document.getElementById('addProductForm').style.display = 'none';
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
 });
+

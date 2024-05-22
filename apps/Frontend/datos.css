@@ -28,7 +28,8 @@ label {
 }
 
 input[type="text"],
-input[type="email"] {
+input[type="email"],
+input[type="number"] {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -55,13 +56,13 @@ button[type="button"]:hover {
     background-color: #025aa5;
 }
 
-.error-message {
+#error-message {
     color: red;
     font-size: 0.9em;
     display: none;
 }
 
-.error-message.active {
+#error-message.active {
     display: block;
 }
 
@@ -101,4 +102,34 @@ th, td {
 
 th {
     background-color: #f2f2f2;
+}
+
+#addProductForm {
+    display: none;
+    margin-top: 20px;
+}
+
+#addProductForm h3 {
+    text-align: center;
+}
+
+#addProductForm input[type="text"],
+#addProductForm input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+#addProductForm button[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+#addProductForm button[type="submit"]:hover {
+    background-color: #4cae4c;
 }
