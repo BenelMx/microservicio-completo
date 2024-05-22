@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('showProductsBtn').addEventListener('click', async function () {
         try {
-            const response = await fetch('http://localhost:3001/productos'); // Asegúrate de que la URL sea correcta
+            const response = await fetch('http://localhost:3001/products'); // Asegúrate de que la URL sea correcta
             if (!response.ok) {
                 throw new Error('Error al obtener la lista de productos');
             }
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <td>${product.id}</td>
                     <td>${product.name}</td>
                     <td>${product.price}</td>
-                    <td>${product.quantity}</td>
+                    <td>${product.amount}</td>
                 `;
                 productTableBody.appendChild(row);
             });
