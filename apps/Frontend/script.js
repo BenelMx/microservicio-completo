@@ -9,7 +9,6 @@ document
     const nameError = document.getElementById('name-error');
     const emailError = document.getElementById('email-error');
 
-    // Validación del lado del cliente
     if (!nameInput.validity.valid || !emailInput.validity.valid) {
       showError(
         'Por favor complete correctamente todos los campos.',
@@ -44,7 +43,7 @@ document
 
       const data = await response.json();
       showMessage('success', `Usuario ${data.name} creado con éxito`);
-      localStorage.setItem('userData', JSON.stringify(data)); // Guardar datos en localStorage
+      localStorage.setItem('userData', JSON.stringify(data)); 
     } catch (error) {
       showMessage('error', `Error: ${error.message}`);
     }
@@ -53,7 +52,6 @@ document
 document.getElementById('enterButton').addEventListener('click', function () {
   const userData = localStorage.getItem('userData');
   if (userData) {
-    // Redirige a la página de datos del usuario
     window.location.href = 'ver_datos.html';
   } else {
     showMessage('error', 'No hay datos de usuario disponibles.');
@@ -65,12 +63,11 @@ function showError(message, inputId, errorElement) {
   errorElement.className = 'error-message active';
   document.querySelector(inputId).classList.add('error-input');
 
-  // Ocultar el mensaje de error después de 5 segundos
   setTimeout(function () {
     errorElement.textContent = '';
     errorElement.className = 'error-message';
     document.querySelector(inputId).classList.remove('error-input');
-  }, 5000); // 5000 milisegundos = 5 segundos
+  }, 5000); 
 }
 
 function showMessage(type, message) {
@@ -79,8 +76,7 @@ function showMessage(type, message) {
   responseDiv.className = type;
   responseDiv.style.opacity = '1';
 
-  // Ocultar el mensaje después de 5 segundos
   setTimeout(function () {
     responseDiv.style.opacity = '0';
-  }, 5000); // 5000 milisegundos = 5 segundos
+  }, 5000); 
 }

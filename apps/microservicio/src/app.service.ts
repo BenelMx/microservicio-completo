@@ -14,7 +14,6 @@ export class AppService {
     @InjectRepository(Product) private readonly productRepository: Repository<Product>,
   ) {}
 
-  // Método para crear un nuevo usuario
   async newUser(body: { name: string; email: string }) {
     const existingUser = await this.userRepository.findOne({ where: { email: body.email } });
     if (existingUser) {
@@ -26,13 +25,11 @@ export class AppService {
     return savedUser;
   }
 
-  // Método para crear un nuevo producto
   async newProduct(body: { name: string, price: number, amount: number }) {
     const newProduct = this.productRepository.create(body);
     return await this.productRepository.save(newProduct);
   }
 
-  // Métodos para obtener y eliminar productos
   async findAllProducts(): Promise<Product[]> {
     return await this.productRepository.find();
   }

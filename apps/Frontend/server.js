@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('showProductsBtn').addEventListener('click', async function () {
         try {
-            const response = await fetch('http://localhost:3001/products'); // Asegúrate de que la URL sea correcta
+            const response = await fetch('http://localhost:3001/products'); 
             if (!response.ok) {
                 throw new Error('Error al obtener la lista de productos');
             }
 
             const products = await response.json();
             const productTableBody = document.querySelector('#productTable tbody');
-            productTableBody.innerHTML = ''; // Limpiar tabla antes de agregar nuevos datos
+            productTableBody.innerHTML = ''; 
 
             products.forEach(product => {
                 const row = document.createElement('tr');
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const productQuantity = parseInt(document.getElementById('productQuantity').value);
 
         try {
-            const response = await fetch('http://localhost:3001/products', { // Asegúrate de que la URL sea correcta
+            const response = await fetch('http://localhost:3001/products', { 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -64,13 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const data = await response.json();
             console.log(data);
 
-            // Refresca la lista de productos
             document.getElementById('showProductsBtn').click();
 
-            // Resetea el formulario
             document.getElementById('productForm').reset();
 
-            // Oculta el formulario
             document.getElementById('addProductForm').style.display = 'none';
         } catch (error) {
             console.error('Error:', error);

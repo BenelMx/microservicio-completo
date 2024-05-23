@@ -11,7 +11,6 @@ export class AppController {
   }
   constructor(private readonly _appService: AppService) {}
 
-  // Endpoint para crear un nuevo usuario (examen)
   @Post('examen')
   public async newUser(@Body() body: unknown) {
     const fakeUser = {
@@ -36,25 +35,21 @@ export class AppController {
     throw new Error('El formato de body es inválido o incompleto.');
   }
 
-  // Endpoint para crear un nuevo producto
   @Post('products')
   public async newProduct(@Body() body: { name: string, price: number, amount: number }) {
     return this._appService.newProduct(body);
   }
 
-  // Endpoint para obtener todos los productos
   @Get('products')
   public async findAllProducts() {
     return this._appService.findAllProducts();
   }
 
-  // Endpoint para obtener un producto por ID
   @Get('products/:id')
   public async findOneProduct(@Param('id') id: number) {
     return this._appService.findOneProduct(id);
   }
 
-  // Endpoint para eliminar un producto por ID
   @Delete('products/:id')
   public async removeProduct(@Param('id') id: number) {
     return this._appService.removeProduct(id);

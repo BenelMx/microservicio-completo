@@ -9,7 +9,6 @@ import { Product } from './product.entity';
 
 @Module({
   imports: [
-    // Configura la conexión a la base de datos MySQL
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -20,18 +19,17 @@ import { Product } from './product.entity';
       entities: [User, Product],
       synchronize: true,
     }),
-    // Configura ClientsModule y registra BM_SERVICE
     ClientsModule.register([
       {
         name: 'BM_SERVICE',
         transport: Transport.TCP,
         options: {
-          host: 'localhost', // Asegúrate de usar la dirección correcta para el servicio
-          port: 3001, // Asegúrate de usar el puerto correcto para el servicio
+          host: 'localhost',
+          port: 3001, 
         },
       },
     ]),
-    TypeOrmModule.forFeature([User, Product]), // Importa tu entidad User
+    TypeOrmModule.forFeature([User, Product]), 
   ],
   controllers: [AppController],
   providers: [AppService],
